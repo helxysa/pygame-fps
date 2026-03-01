@@ -16,7 +16,10 @@ from score import ScoreManager
 class Game:
     def __init__(self):
         pg.init()
-        self.window = pg.display.set_mode(WIN_RES)
+        import os
+        info = pg.display.Info()
+        os.environ['SDL_VIDEO_WINDOW_POS'] = f'{(info.current_w - WIN_WIDTH) // 2},{(info.current_h - WIN_HEIGHT) // 2}'
+        self.window = pg.display.set_mode(WIN_RES, pg.NOFRAME)
         self.screen = pg.Surface(RES)
         pg.display.set_caption('Project Hellbreaker')
         self.clock = pg.time.Clock()
